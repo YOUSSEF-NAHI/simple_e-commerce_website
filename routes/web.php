@@ -18,3 +18,7 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
+
+Route::get('/addtocart/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('addToCart');

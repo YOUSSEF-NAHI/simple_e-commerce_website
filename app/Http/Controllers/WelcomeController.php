@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class WelcomeController extends Controller
 {
@@ -23,7 +24,10 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = collect([1,2,3,4,5,6]);
+        // return Product::all();
+        // dd();
+        $products = Product::all();
+        //collect([1,2,3,4,5,6]);
         return view('front.welcome', compact('products'));
     }
 }
