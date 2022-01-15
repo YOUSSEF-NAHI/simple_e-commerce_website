@@ -22,3 +22,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
 
 Route::get('/addtocart/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('addToCart');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
