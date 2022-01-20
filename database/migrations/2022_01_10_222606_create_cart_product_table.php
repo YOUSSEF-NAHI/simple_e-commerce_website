@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommandsTable extends Migration
+class CreateCartProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,21 @@ class CreateCommandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commands', function (Blueprint $table) {
+        Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('cart_id');
-            $table->integer('product_id');
             $table->integer('quantity');
             $table->integer('totalPrice');
             $table->timestamps();
+
+            $table->foreignId('cart_id')
+                    ->constrained('carts')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+    
+            $table->foreignId('product_id')
+                    ->constrained('products')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
         });
     }
 
