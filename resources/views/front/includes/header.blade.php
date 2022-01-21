@@ -29,6 +29,14 @@
                         </li>
                     @endif
                 @else
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('shoppingCart') }}">
+                            <i class="fas fa-shopping-cart position-relative">
+                                <span class="position-absolute top-0 start-0 translate-middle  badge rounded-pill bg-primary">{{ Auth::user()->cart->totalquantity ?? 0 }}</span>
+                            </i>
+                            Shopping-cart
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}

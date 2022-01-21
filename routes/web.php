@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('Welcome');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('Welcome');
 
-Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
-
-Route::get('/addtocart/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [CartController::class, 'index'])->name('shoppingCart');
+Route::get('/cart/add_product/{productId}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart/delete_product/{productId}', [CartController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/cart/increase_product/{productId}', [CartController::class, 'increaseProduct'])->name('increaseProduct');
+Route::get('/cart/decrease_product/{productId}', [CartController::class, 'decreaseProduct'])->name('decreaseProduct');
+Route::get('/cart/check_out', [CartController::class, 'checkOut'])->name('checkOut');
 
 
 Route::group(['prefix' => 'admin'], function () {
